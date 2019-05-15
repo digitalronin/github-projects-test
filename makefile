@@ -5,11 +5,11 @@ update-badge:
 
 # Tag the repo with a new release version
 # USAGE:
-#   make release VERSION=8.8
+#   make release VERSION=8.8 MESSAGE="This version does something awesome"
 release:
 	# Tags are top-level entities in git, so it doesn't matter
 	# in which order we tag and branch the repo.
-	git tag $${VERSION} -m "Update version number to $${VERSION}"
+	git tag $${VERSION} -m "$${MESSAGE}"
 	git checkout -b update-version-to-$${VERSION}
 	make update-badge
 	git add README.md
