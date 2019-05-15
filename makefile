@@ -5,13 +5,15 @@ update-badge:
 
 # Tag the repo with a new release version
 # USAGE:
-#   VERSION=8.8 make release
+#   make release VERSION=8.8
 release:
+	git checkout -b update-version-to-$${VERSION}
 	git tag $${VERSION} -m "Update version number to $${VERSION}"
 	make update-badge
 	git add README.md
 	git commit -m "Update version badge in README.md to $${VERSION}"
-	git push --follow-tags
+	git push --follow-tags origin update-version-to-$${VERSION}
+	echo "Please raise a PR from this branch"
 
 .PHONY: release update-badge
 
